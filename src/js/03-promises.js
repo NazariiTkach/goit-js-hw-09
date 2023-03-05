@@ -4,6 +4,7 @@ const step = document.querySelector('input[name="step"]');
 const amount = document.querySelector('input[name="amount"]');
 const btnCreatePromise = document.querySelector('button[type="submit"]');
 
+
 function createPromise(position, delay) {
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -16,12 +17,14 @@ function createPromise(position, delay) {
     }, delay);
   });
   return promise;
+
 }
 
 btnCreatePromise.addEventListener('click', e => {
   e.preventDefault();
   let firstDelay = Number(delay.value);
   let delayStep = Number(step.value);
+  btnCreatePromise.disabled = true;
   for (let i = 0; i < amount.value; i++) {
     createPromise(1 + i, firstDelay + i * delayStep)
       .then(({ position, delay }) => {
